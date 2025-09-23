@@ -2,6 +2,9 @@
 const express=require("express");
 const app=express();
 //this is responsing all the request
+app.use("/",(req,res)=>{
+ res.send("hello satyam");
+})
 app.use((req,res)=>{
     res.send("hello from server ");  
 })
@@ -11,6 +14,7 @@ app.use("/hello",(req,res)=>{
 app.use((req,res)=>{
     res.send("hello from nodemone");
 })
+
 app.use("/test",(req,res)=>{
     res.send("hello from test");
 })
