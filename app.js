@@ -22,6 +22,32 @@ app.use("/test",(req,res)=>{
     res.send("hello from the server");
 })
 
+
+
+//there is some specific thisg which required to help to design some variance in the routes
+app.get("/ab?c",(req,res)=>{//mena this routes will be working on the /ac path also
+    //mens it makes b optional
+    res.send("variance in the routes");
+
+})
+
+//another variation in it
+app.get(/a/,(req,res)=>{//this routes can work on the path which contains a
+    res.send({firstName:"Satyam",lastName:"kumar"})
+
+})
+
+
+//here we have to create the dynamic routes
+app.get("/user/:userId/:name/:password",(req,res)=>{
+    console.log(req.params);
+    res.send({firstName:"satyam",lastName:"kumar"});
+});
+
+
+
+
+
 app.listen(7777,()=>{
     console.log("Server is successfully listining on this port");
 });
