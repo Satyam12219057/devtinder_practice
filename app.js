@@ -1,53 +1,35 @@
 //it is the starting point of our project
 const express=require("express");
 const app=express();
-//this is responsing all the request
+
+
+//we have to allouded to make multiple routes but we have to send the response at last
+
+app.use("/user",(req,res,next)=>{
+  //Routes handlers
+
+  console.log("Handling the route user!!");
+  next();//when next come it can send the request to the next route handler
+  //res.send("Response1!");
  
-//if we use the use() call then it will match all the https calss function
-app.use("/user",(req,res)=>{
-    res.send("it can handle all the https request");
-})
-app.get("/user",(req,res)=>{
-    res.send({firstName:"Satyam",lastName:"kumar"});
-});
-app.post("/user",(req,res)=>{
-    res.send("Data successfully saved to the database");
-});
 
-app.delete("/user",(req,res)=>{
-    res.send("deletetion successfully");
-})
+},
+(req,res,next)=>{
+    console.log("handling the route user2!!");
+    res.send("2nd user");
+    next();
+},
+(req,res,next)=>{
+    console.log("handling the another route handler");
+    next();
+},(req,res,next)=>{
+    console.log("in express we have allouded to make the multiple route handlers but at the last we have to send the response also");
+    res.send("finally we have to end the response");
 
-app.use("/test",(req,res)=>{
-    res.send("hello from the server");
-})
+}
 
 
-
-//there is some specific thisg which required to help to design some variance in the routes
-app.get("/ab?c",(req,res)=>{//mena this routes will be working on the /ac path also
-    //mens it makes b optional
-    res.send("variance in the routes");
-
-})
-
-//another variation in it
-app.get(/a/,(req,res)=>{//this routes can work on the path which contains a
-    res.send({firstName:"Satyam",lastName:"kumar"})
-
-})
-
-
-//here we have to create the dynamic routes
-app.get("/user/:userId/:name/:password",(req,res)=>{
-    console.log(req.params);
-    res.send({firstName:"satyam",lastName:"kumar"});
-});
-
-
-
-
-
+);
 app.listen(7777,()=>{
     console.log("Server is successfully listining on this port");
 });

@@ -6,3 +6,12 @@
 -listen to port number
 -write a request handler for /test,/hello
 -Install nodemon and update script inside package.json
+- order of the routes which is matters a lot
+-play with the routes propelry
+-order of the routes matter a lot
+//postman isntallation ans use it propelry
+-write a logic to handle the GET,POST,PATCH,DELETE API calls and test them on post man
+-explore routings and use ?,+,(),*,*in the routes
+-use of the regex /a/
+-reading the query params in the routings
+-reading the dynamic routes
