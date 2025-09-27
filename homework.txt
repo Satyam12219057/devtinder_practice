@@ -15,3 +15,7 @@
 -use of the regex /a/
 -reading the query params in the routings
 -reading the dynamic routes
+-create route handlers and play with the code how can i handle multiple routes
+-next()
+-how properly use the next() function during the routes
+-what is the middeleare and how express js handle these middelware

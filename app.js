@@ -2,34 +2,42 @@
 const express=require("express");
 const app=express();
 
-
-//we have to allouded to make multiple routes but we have to send the response at last
-
-app.use("/user",(req,res,next)=>{
-  //Routes handlers
-
-  console.log("Handling the route user!!");
-  next();//when next come it can send the request to the next route handler
-  //res.send("Response1!");
- 
-
-},
-(req,res,next)=>{
-    console.log("handling the route user2!!");
-    res.send("2nd user");
-    next();
-},
-(req,res,next)=>{
-    console.log("handling the another route handler");
-    next();
-},(req,res,next)=>{
-    console.log("in express we have allouded to make the multiple route handlers but at the last we have to send the response also");
-    res.send("finally we have to end the response");
-
-}
+const {adminAuth,userAuth}=require("./middlewares/auth.js");
 
 
-);
+//here we can handle all the request comming from the user first verified and then alloud
+
+
+//here we are  going to use the middleware smartly
+app.use("/admin",adminAuth);
+
+app.post("/user/login",(req,res)=>{
+    res.send("User logged in successfully");
+})
+
+app.get("/user/data",userAuth,(req,res)=>{
+    res.send("User Data Sent");
+});
+
+
+//we have to use the middleware like this 
+//app.use("/user",userAuth);
+
+app.get("/user",userAuth,(req,res)=>{
+    res.send("User Data Sent");
+})
+
+
+app.get("/admin/getAllData",(req,res)=>{
+    //here we have to get the user
+    res.send("all data Sent");
+   });
+app.get("/admin/deleteUser",userAuth,(req,res)=>{
+    res.send("we have to delete all the user");
+})
+
+
+
 app.listen(7777,()=>{
     console.log("Server is successfully listining on this port");
 });
