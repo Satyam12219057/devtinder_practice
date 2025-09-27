@@ -1,45 +1,47 @@
 //it is the starting point of our project
 const express=require("express");
+const connectDB=require("./config/database");
+const User =require("./models/user");
 const app=express();
 
-const {adminAuth,userAuth}=require("./middlewares/auth.js");
 
+app.post("/signup",async (req,res)=>{
+    //here i am creating the dummy user and i want to push it into the data base
+    const user= new User({
+        firstName:"satyam",
+        lastName:"tiwari",
+        email:"tiwari@gmil.com",
+        password:"akshay123"
 
-//here we can handle all the request comming from the user first verified and then alloud
+    });
+    try{
+         await user.save();
+    res.send("user added successfully");
 
+    }catch(err){
+        res.status(400).send("Error while saving the data into the database");
+    }
+   
 
-//here we are  going to use the middleware smartly
-app.use("/admin",adminAuth);
-
-app.post("/user/login",(req,res)=>{
-    res.send("User logged in successfully");
-})
-
-app.get("/user/data",userAuth,(req,res)=>{
-    res.send("User Data Sent");
 });
 
 
-//we have to use the middleware like this 
-//app.use("/user",userAuth);
-
-app.get("/user",userAuth,(req,res)=>{
-    res.send("User Data Sent");
-})
 
 
-app.get("/admin/getAllData",(req,res)=>{
-    //here we have to get the user
-    res.send("all data Sent");
+
+//always  the first start the connection with the databse and then start the server
+
+
+
+    connectDB().then(()=>{
+    console.log("Database connection established.....");
+    app.listen(7777, () => {
+        console.log("Server is successfully running on port 7777");
+    });
+    }).catch(err=>{
+    console.log("DataBase connection Error!!!!!", err);
    });
-app.get("/admin/deleteUser",userAuth,(req,res)=>{
-    res.send("we have to delete all the user");
-})
 
 
-
-app.listen(7777,()=>{
-    console.log("Server is successfully listining on this port");
-});
 
 

@@ -19,3 +19,11 @@
 -next()
 -how properly use the next() function during the routes
 -what is the middeleare and how express js handle these middelware
+-write the dummy middelware prpprly and handle it
+-create a free cluster  on mongodb offecial website (mongodb atlas)
+-connect your application to the database and 
+-install the mongoose liberary
+-take the connection string and connect server to the database properly
+-call the connectdb function and connect to database before starting application on 7777
+-create a userSchema and user node_module
+-add first data to the database
