@@ -27,3 +27,8 @@
 -call the connectdb function and connect to database before starting application on 7777
 -create a userSchema and user node_module
 -add first data to the database
+-difference between the json and the javascript object
+-json always need a key value pair
+-add the express.json middelware to your app
+-Make your signup Api dyanmic to recive data from the end user
+

@@ -5,23 +5,26 @@ const User =require("./models/user");
 const app=express();
 
 
+//this is a middelware  which convert the json data into the javascript object format
+
+app.use(express.json());
+
+
 app.post("/signup",async (req,res)=>{
     //here i am creating the dummy user and i want to push it into the data base
-    const user= new User({
-        firstName:"satyam",
-        lastName:"tiwari",
-        email:"tiwari@gmil.com",
-        password:"akshay123"
 
-    });
+    //this is the not the good way to  post the data in the database
+
+    const user=new User(req.body);
+
     try{
-         await user.save();
+     await user.save();
     res.send("user added successfully");
 
     }catch(err){
-        res.status(400).send("Error while saving the data into the database");
+        res.status(400).send("Error while saving the data into the database"+err.message());
     }
-   
+   // our server is not able to  understand the data in json format
 
 });
 
