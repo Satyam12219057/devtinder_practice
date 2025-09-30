@@ -31,4 +31,9 @@
 -json always need a key value pair
 -add the express.json middelware to your app
 -Make your signup Api dyanmic to recive data from the end user
+-User.findOne with duplicate email which one will the db returns
+-api get by email
+-API- feed-- get/feed whish can give you all the  data of the user
+-Api - get user by id try to find the user by the id of the user
+
 
