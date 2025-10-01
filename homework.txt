@@ -35,5 +35,6 @@
 -api get by email
 -API- feed-- get/feed whish can give you all the  data of the user
 -Api - get user by id try to find the user by the id of the user
-
+-create api which can update the user
+-delete,update,patch,get,put also make the all api which is required for any user
 

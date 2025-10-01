@@ -22,7 +22,7 @@ app.post("/signup",async (req,res)=>{
     res.send("user added successfully");
 
     }catch(err){
-        res.status(400).send("Error while saving the data into the database"+err.message());
+        res.status(400).send("Error while saving the data into the database"+err.message);
     }
    // our server is not able to  understand the data in json format
 
@@ -94,12 +94,14 @@ app.patch("/user",async(req,res)=>{
     try{
         //now i am using the return document here before mean it can return data before updation
        const user= await User.findByIdAndUpdate(userId, req.body,{
-            returnDocument:"before"
+            returnDocument:"before",
+            runValidators:true
         });
+        console.log(user);
         res.send("updation of the data successfully ");
         }
     catch(err){
-        res.status(400).send("SOMETHING WENT WRONG");
+        res.status(400).send("Update failed"+err.message);
     }
 
 })
